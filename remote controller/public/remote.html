@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Télécommande</title>
+    <style>
+        #container {display: flex; align-items: center; flex-wrap: wrap; margin-top: 30vh;}
+        #up {position: relative; left: 45%;}
+        #left {position: relative; left: auto; top: 15vh;}
+        #right {position: relative; left: 45%; top: 15vh;}
+        #down {position: relative; right: 1vw; top: 30vh;}
+        button {background-color: black; color: white; width: 15vw; height: 10vh; box-shadow: gray 3px 3px;}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <button id="up">up</button>
+        <button id="left">left</button>
+        <button id="right">right</button>
+        <button id="down">down</button>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
+
+        let up = document.getElementById('up');
+        let left = document.getElementById('left');
+        let right = document.getElementById('right');
+        let down = document.getElementById('down');
+
+        up.addEventListener("click", () => {
+            socket.emit('up');
+        });
+        
+        down.addEventListener("click", () => {
+            socket.emit('down');
+        });
+
+        left.addEventListener("click", () => {
+            socket.emit('left');
+        });
+
+        right.addEventListener("click", () => {
+            socket.emit('right');
+        });
+
+    </script>
+</body>
+</html>

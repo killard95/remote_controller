@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot</title>
+    <style>      
+        img { height: 15vh; width: 10vw; position: relative; top: 200px; left: 300px;}
+      </style>
+</head>
+<body>
+    <img id="img" src="https://www.educol.net/image-robot-dl27198.jpg">
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io();
+        let img = document.getElementById('img');
+
+
+        function vertical(value){
+            const {top} = img.getBoundingClientRect();
+            img.style.top = `${top + value}px`;
+        }
+
+        function horizontal(value){
+            const {left} = img.getBoundingClientRect();
+            img.style.left = `${left + value}px`;
+        }
+
+        socket.on('up', () => {
+            vertical(-20);
+        })
+        socket.on('down', () => {
+            vertical(10);
+        })
+        socket.on('left', () => {
+            horizontal(-20);
+        })
+        socket.on('right', () => {
+            horizontal(10);
+        })
+    </script>
+</body>
+</html>
